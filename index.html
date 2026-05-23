@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WallpaperHub - Curated Wallpapers</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <h1><i class="fas fa-image"></i> WallpaperHub</h1>
+                </div>
+                <div class="header-actions">
+                    <button class="favorites-btn" id="favoritesBtn">
+                        <i class="fas fa-heart"></i>
+                        <span id="favCount">0</span>
+                    </button>
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Search and Filter Section -->
+        <section class="search-section">
+            <div class="search-container">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    class="search-input" 
+                    placeholder="Search wallpapers..."
+                    autocomplete="off"
+                >
+                <button class="search-btn" id="searchBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="categoryFilter">Category:</label>
+                    <select id="categoryFilter" class="filter-select">
+                        <option value="">All Categories</option>
+                        <option value="nature">Nature</option>
+                        <option value="urban">Urban</option>
+                        <option value="abstract">Abstract</option>
+                        <option value="space">Space</option>
+                        <option value="technology">Technology</option>
+                        <option value="animals">Animals</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="resolutionFilter">Resolution:</label>
+                    <select id="resolutionFilter" class="filter-select">
+                        <option value="">All Resolutions</option>
+                        <option value="1920x1080">1920x1080</option>
+                        <option value="2560x1440">2560x1440</option>
+                        <option value="3840x2160">4K (3840x2160)</option>
+                        <option value="1366x768">1366x768</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="sortFilter">Sort By:</label>
+                    <select id="sortFilter" class="filter-select">
+                        <option value="recent">Most Recent</option>
+                        <option value="popular">Most Popular</option>
+                        <option value="trending">Trending</option>
+                    </select>
+                </div>
+
+                <button class="clear-filters-btn" id="clearFilters">Clear Filters</button>
+            </div>
+        </section>
+
+        <!-- Tags Section -->
+        <section class="tags-section">
+            <div class="tags-container" id="tagsContainer"></div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="gallery">
+            <div class="gallery-grid" id="galleryGrid"></div>
+        </section>
+
+        <!-- No Results Message -->
+        <div class="no-results" id="noResults" style="display: none;">
+            <i class="fas fa-search"></i>
+            <p>No wallpapers found. Try adjusting your filters.</p>
+        </div>
+
+        <!-- Loading Indicator -->
+        <div class="loading" id="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Loading wallpapers...</p>
+        </div>
+    </div>
+
+    <!-- Modal for viewing full wallpaper -->
+    <div class="modal" id="wallpaperModal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <div class="modal-inner">
+                <img id="modalImage" src="" alt="Full wallpaper" class="modal-image">
+                <div class="modal-info">
+                    <h2 id="modalTitle"></h2>
+                    <p id="modalDescription"></p>
+                    <div class="modal-meta">
+                        <span class="meta-item">
+                            <i class="fas fa-tag"></i>
+                            <span id="modalCategory"></span>
+                        </span>
+                        <span class="meta-item">
+                            <i class="fas fa-monitor"></i>
+                            <span id="modalResolution"></span>
+                        </span>
+                        <span class="meta-item">
+                            <i class="fas fa-download"></i>
+                            <span id="modalDownloads">0</span>
+                        </span>
+                    </div>
+                    <div class="modal-actions">
+                        <button class="btn-favorite" id="modalFavoriteBtn">
+                            <i class="far fa-heart"></i> Add to Favorites
+                        </button>
+                        <button class="btn-download" id="modalDownloadBtn">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Favorites Modal -->
+    <div class="modal" id="favoritesModal">
+        <div class="modal-content favorites-modal-content">
+            <span class="close" id="closeFavoritesModal">&times;</span>
+            <h2>Your Favorites</h2>
+            <div class="favorites-grid" id="favoritesGrid"></div>
+            <div class="no-favorites" id="noFavorites" style="display: none;">
+                <p>No favorites yet. Start adding your favorite wallpapers!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
